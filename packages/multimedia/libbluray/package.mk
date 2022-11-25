@@ -21,8 +21,19 @@ if [ "${BLURAY_BDPLUS_SUPPORT}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" libbdplus"
 fi
 
-@@ -35,7 +36,13 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-werror \
-                            --disable-doxygen-html \
+PKG_CONFIGURE_OPTS_TARGET="--disable-werror \
+                           --disable-extra-warnings \
+                           --disable-optimizations \
+                           --disable-examples \
+                           --disable-bdjava-jar \
+                           --disable-doxygen-doc \
+                           --disable-doxygen-dot \
+                           --disable-doxygen-man \
+                           --disable-doxygen-rtf \
+                           --disable-doxygen-xml \
+                           --disable-doxygen-chm \
+                           --disable-doxygen-chi \
+                           --disable-doxygen-html \
                            --disable-doxygen-ps \
                            --disable-doxygen-pdf \
                            --enable-bdjava \
