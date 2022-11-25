@@ -11,6 +11,7 @@ PKG_URL="http://download.videolan.org/pub/videolan/libbluray/${PKG_VERSION}/${PK
 PKG_DEPENDS_TARGET="toolchain fontconfig freetype libxml2 libudfread"
 PKG_LONGDESC="libbluray is an open-source library designed for Blu-Ray Discs playback for media players."
 PKG_TOOLCHAIN="autotools"
+PKG_BUILD_FLAGS="-verbose"
 
 if [ "${BLURAY_AACS_SUPPORT}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" libaacs"
@@ -20,26 +21,17 @@ if [ "${BLURAY_BDPLUS_SUPPORT}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" libbdplus"
 fi
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-werror \
-                           --disable-extra-warnings \
-                           --disable-optimizations \
-                           --disable-examples \
-                           --disable-bdjava-jar \
-                           --disable-doxygen-doc \
-                           --disable-doxygen-dot \
-                           --disable-doxygen-man \
-                           --disable-doxygen-rtf \
-                           --disable-doxygen-xml \
-                           --disable-doxygen-chm \
-                           --disable-doxygen-chi \
-                           --disable-doxygen-html \
+@@ -35,7 +36,13 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-werror \
+                            --disable-doxygen-html \
                            --disable-doxygen-ps \
                            --disable-doxygen-pdf \
+                           --enable-bdjava \
                            --with-freetype \
                            --with-fontconfig \
                            --with-libxml2 \
+                           --with-libudfread \
                            --with-gnu-ld"
-
-post_configure_target() {
-  libtool_remove_rpath libtool
+                           
+pre_configure_target() {
+  export CFLAGS="$CFLAGS -D_GNU_SOURCE"
 }
