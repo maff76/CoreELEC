@@ -22,4 +22,3 @@ Ref: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=837020
 +@DX_RULES@
  
  ACLOCAL_AMFLAGS = -I m4
- 
